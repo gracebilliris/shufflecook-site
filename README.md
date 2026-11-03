@@ -10,6 +10,8 @@ The public web companion to ShuffleCook, built with plain HTML, CSS, SVG and Jav
 
 Select pantry ingredients, optionally filter by dietary tag/time or search, and choose **Find my matches**. A nonempty pantry requires at least one matching ingredient; an empty pantry explores all 12 original recipes. **Surprise me** picks only from the current matches and avoids the previous pick when possible.
 
+On phones, **Pantry & filters** starts collapsed so recipes are immediately reachable. Four recipes appear at a time; **Show more recipes** reveals the rest. A shuffled pick always appears first, even if it was not previously visible.
+
 Open **Let's cook** for quantities, servings and complete instructions. Hearts save favourites. **Add missing** creates a shopping list without pantry ingredients, with amounts shown separately per recipe. Check items off or remove a recipe. **Clear pantry** keeps favourites and shopping recipes; **Reset saved data** clears everything after confirmation.
 
 Pantry, favourites, shopping recipe IDs and checkoffs are saved in local storage on this browser only. Filters reset on reload. Blocked storage displays a warning; the current visit remains usable. There is no native-app sync or guaranteed offline web support. Dietary tags are ingredient guides, not allergy guarantees; check product labels.

@@ -17,7 +17,7 @@
       <span>recipe<span class="brand-light">roulette</span><small>BY SHUFFLECOOK</small></span>
     </a>
     <nav aria-label="Main navigation">
-      <a class="nav-active" href="#pantry">The kitchen</a>
+      <a class="nav-active" href="#recipes">Recipes</a>
       <a href="#shopping"><span class="desktop-label">Shopping </span>list <span id="shopping-badge" class="nav-count">0</span></a>
       <a href="../support/">Help <span aria-hidden="true">↗</span></a>
     </nav>
@@ -27,9 +27,9 @@
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero-copy">
         <p class="eyebrow"><span class="tiny-star" aria-hidden="true">✳</span> GOOD FOOD. LESS OVERTHINKING.</p>
-        <h1 id="hero-title">A full pantry.<br>A fresh <em>possibility.</em></h1>
-        <p class="hero-description">Start with what you have. Find something you’ll love.<br class="desktop-label"> Let’s put a little possibility on your plate.</p>
-        <a class="hero-link" href="#pantry">What’s in your kitchen? <span aria-hidden="true">↘</span></a>
+        <h1 id="hero-title">What’s for <em>dinner?</em></h1>
+        <p class="hero-description">Browse 12 recipes, match what’s in your pantry, or let us pick. No account needed.</p>
+        <a class="hero-link" href="#recipes">Find something to cook <span aria-hidden="true">↘</span></a>
       </div>
       <div class="hero-art">
         <span class="art-caption caption-top">a little of this…</span>
@@ -40,12 +40,12 @@
     </section>
 
     <div id="storage-warning" class="notice notice-warning" role="status" hidden></div>
-    <p id="app-status" class="sr-only" role="status" aria-live="polite"></p>
+    <p id="app-status" class="action-status" role="status" aria-live="polite"></p>
 
     <div class="kitchen-layout">
       <aside class="pantry-panel" id="pantry" aria-labelledby="pantry-title">
-        <div class="section-kicker">01 / THE STARTING POINT</div>
-        <div class="panel-heading"><h2 id="pantry-title">Your pantry</h2><span class="small-icon" aria-hidden="true">↘</span></div>
+        <details id="pantry-controls" open>
+        <summary><h2 id="pantry-title">Pantry &amp; filters</h2><span id="pantry-summary">Optional · browse all recipes below</span></summary>
         <p class="muted">A few ingredients. A lot of potential.</p>
         <label class="sr-only" for="ingredient-search">Search pantry ingredients</label>
         <div class="search-field"><span aria-hidden="true">⌕</span><input id="ingredient-search" type="search" placeholder="Find an ingredient…" autocomplete="off" data-testid="ingredient-search"></div>
@@ -74,6 +74,7 @@
         <input id="recipe-search" type="search" placeholder="Search recipes…" data-testid="recipe-search">
         <button id="find-matches" class="button button-green full-width" type="button">Find my matches <span aria-hidden="true">↗</span></button>
         <p class="pantry-note">No pantry selected? Explore the whole menu.<br>Choose ingredients to find recipes that use them.<br>Dietary tags are guides, not allergy guarantees. Check ingredient labels.</p>
+        </details>
       </aside>
 
       <section id="recipes" class="recipes-section" aria-labelledby="recipes-title">
@@ -86,6 +87,7 @@
           <label class="favourites-filter" for="favourites-only"><input id="favourites-only" type="checkbox" data-testid="favourites-only"><span aria-hidden="true">♡</span> Favourites only</label>
         </div>
         <div id="recipe-grid" class="recipe-grid" aria-label="Matching recipes"></div>
+        <div class="recipe-pagination"><p id="recipes-shown" class="muted" aria-live="polite"></p><button id="recipe-more" class="button button-outline" type="button" aria-controls="recipe-grid">Show more recipes</button></div>
         <div id="recipe-empty" class="empty-state" hidden></div>
         <div class="kitchen-tip"><span aria-hidden="true">✳</span><p><strong>A small kitchen philosophy</strong><br>You don’t need a perfect pantry. Just a place to start.</p></div>
       </section>

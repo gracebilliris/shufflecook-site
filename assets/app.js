@@ -25,6 +25,11 @@ let previousShuffleId = null;
 let pickedId = null;
 let activeRecipeId = null;
 let dialogOpener = null;
+let visibleRecipeCount = 4;
+let previousFilters = '';
+const pantryMedia = window.matchMedia('(max-width: 580px)');
+$('pantry-controls').open = !pantryMedia.matches;
+pantryMedia.addEventListener('change', event => { $('pantry-controls').open = !event.matches; });
 
 function showStorageWarning() {
   storageWarning.hidden = false;
@@ -76,6 +81,9 @@ function updatePantry() {
     if (!chip.hidden) visible += 1;
   }
   $('pantry-count').textContent = state.pantry.length;
+  $('pantry-summary').textContent = state.pantry.length
+    ? `${state.pantry.length} ${state.pantry.length === 1 ? 'ingredient' : 'ingredients'} selected · adjust your matches`
+    : 'Optional · browse all recipes below';
   $('clear-pantry').disabled = state.pantry.length === 0;
   $('ingredient-empty').hidden = visible > 0;
 }
@@ -88,7 +96,7 @@ function cardTemplate({ recipe, available, missing }) {
   const favourite = state.favourites.includes(recipe.id);
   const inList = state.shoppingRecipes.includes(recipe.id);
   const picked = pickedId === recipe.id;
-  return `<article class="recipe-card${picked ? ' is-pick' : ''}" data-recipe-id="${escapeHTML(recipe.id)}" tabindex="-1">
+  return `<article class="recipe-card${picked ? ' is-pick' : ''}" data-recipe-id="${escapeHTML(recipe.id)}" tabindex="-1" aria-label="${escapeHTML(recipe.title)}">
     <div class="card-art">
       <img src="../assets/food-art.svg" alt="" width="235" height="160" loading="lazy">
       <span class="illustration-label">A LITTLE SERVING INSPIRATION</span>
@@ -115,11 +123,22 @@ function cardTemplate({ recipe, available, missing }) {
 
 function renderRecipes() {
   // Only the results are replaced: typing never replaces the focused filter input.
-  matches = findMatches(recipes, currentFilters());
+  const filters = currentFilters();
+  const filterKey = JSON.stringify({ ...filters, favourites: filters.favouritesOnly ? filters.favourites : [] });
+  if (filterKey !== previousFilters) {
+    visibleRecipeCount = 4;
+    previousFilters = filterKey;
+    announce('');
+  }
+  matches = findMatches(recipes, filters);
   if (!matches.some(({ recipe }) => recipe.id === pickedId)) pickedId = null;
   $('results-count').textContent = `${matches.length} ${matches.length === 1 ? 'recipe' : 'recipes'}${state.pantry.length ? ' for your pantry' : ' to explore'}`;
   $('shuffle').disabled = matches.length === 0;
-  $('recipe-grid').innerHTML = matches.map(cardTemplate).join('');
+  const ordered = pickedId ? [...matches.filter(({ recipe }) => recipe.id === pickedId), ...matches.filter(({ recipe }) => recipe.id !== pickedId)] : matches;
+  $('recipe-grid').innerHTML = ordered.slice(0, visibleRecipeCount).map(cardTemplate).join('');
+  $('recipes-shown').textContent = matches.length ? `Showing ${Math.min(visibleRecipeCount, matches.length)} of ${matches.length} recipes` : '';
+  $('recipe-more').hidden = visibleRecipeCount >= matches.length;
+  $('recipe-more').textContent = `Show ${Math.min(4, Math.max(0, matches.length - visibleRecipeCount))} more recipes`;
   $('recipe-empty').hidden = matches.length > 0;
   if (!matches.length) {
     const favouritesOnly = $('favourites-only').checked;
@@ -213,6 +232,7 @@ function openRecipe(id, opener) {
 }
 
 function resetFilters() {
+  visibleRecipeCount = 4;
   state.pantry = [];
   $('ingredient-search').value = '';
   $('recipe-search').value = '';
@@ -245,6 +265,14 @@ for (const id of ['diet-filter', 'time-filter', 'favourites-only']) {
   $(id).addEventListener('change', renderRecipes);
 }
 $('recipe-search').addEventListener('input', renderRecipes);
+$('recipe-more').addEventListener('click', () => {
+  const firstNewIndex = visibleRecipeCount;
+  visibleRecipeCount += 4;
+  renderRecipes();
+  const firstNewCard = $('recipe-grid').children[firstNewIndex];
+  firstNewCard?.focus({ preventScroll: true });
+  firstNewCard?.scrollIntoView({ block: 'nearest', behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
+});
 $('find-matches').addEventListener('click', () => {
   renderRecipes();
   announce(`${matches.length} matching recipes found.`);

@@ -4,4 +4,61 @@
 @media(max-width:1100px){.page-width{width:calc(100% - 64px)}.kitchen-layout{grid-template-columns:265px minmax(0,1fr);gap:27px}.pantry-panel{padding:22px 18px}.results-heading{align-items:flex-start}.results-heading h2{font-size:30px}.results-heading .button{gap:7px;padding:10px;font-size:11px}.card-body{padding:16px 14px}.card-actions{grid-template-columns:1fr}.card-actions .add-shopping{min-height:30px}.hero h1{font-size:56px}.hero-description{font-size:13px}.card-art{height:140px}}
 @media(max-width:800px){.page-width{width:calc(100% - 40px)}.site-header{min-height:90px}nav{gap:17px}.brand{font-size:20px}.brand-mark{width:39px;height:39px;font-size:30px;line-height:39px}.brand small{font-size:6px}.hero{min-height:350px;padding:30px 0;gap:0;grid-template-columns:1.1fr 1fr}.hero h1{font-size:44px;letter-spacing:-2px}.eyebrow{font-size:8px;letter-spacing:1px}.hero-description{font-size:12px}.art-caption{font-size:13px}.art-stamp{width:60px;height:60px;font-size:6px}.art-stamp b{font-size:12px}.kitchen-layout{grid-template-columns:235px minmax(0,1fr);gap:22px}.recipe-grid{grid-template-columns:1fr}.results-heading{flex-direction:column;gap:15px}.results-heading .button{align-self:stretch}.results-toolbar{align-items:flex-start;flex-direction:column;gap:5px;margin:15px 0}.card-actions{grid-template-columns:1fr auto}.card-art{height:155px}.shopping-heading{align-items:flex-start}.shopping-heading h2{font-size:28px}.site-footer{gap:12px}.site-footer>div{gap:16px}}
 @media(max-width:580px){.page-width{width:calc(100% - 32px)}.site-header{min-height:84px;gap:12px}.brand{font-size:17px;gap:7px;letter-spacing:-.7px}.brand-mark{width:34px;height:34px;font-size:26px;line-height:34px;border-radius:10px}.brand-mark i{width:6px;height:6px}.brand small{letter-spacing:1.3px;font-size:5.7px;margin-top:6px}nav{gap:14px}nav a{font-size:11px}nav .nav-active{display:none}.desktop-label{display:none}.hero{grid-template-columns:1fr;padding:30px 0 27px;position:relative;overflow:hidden;gap:8px}.hero-copy{position:relative;z-index:1}.hero h1{font-size:50px;letter-spacing:-2px}.eyebrow{font-size:8px;margin-bottom:15px}.hero-description{font-size:13px;max-width:300px;margin:18px 0}.hero-art{width:90%;max-width:370px;margin-top:-3px;align-self:center;justify-self:center}.hero-art img{margin-block:-12px}.caption-top{top:5%;left:3%}.caption-bottom{right:4%;bottom:0}.art-stamp{right:0;top:5%;width:66px;height:66px}.hero-link{font-size:11px}.kitchen-layout{grid-template-columns:1fr;gap:32px;padding-top:24px}.pantry-panel{padding:23px}.pantry-panel>.muted{font-size:13px}.ingredient-chips{max-height:194px;gap:8px}.ingredient-chip{min-height:40px;font-size:12px;padding:8px 12px}.selection-summary{font-size:12px}.pantry-panel>label{font-size:12px}.pantry-panel>select,.pantry-panel>input,.search-field input{font-size:16px}.pantry-panel .button{font-size:13px}.pantry-note{font-size:11px}.results-heading{flex-direction:row;align-items:center;gap:10px}.results-heading h2{font-size:29px;max-width:200px}.results-heading .button{align-self:center;font-size:10px;padding:10px;gap:5px;white-space:nowrap}.results-heading .button span{font-size:18px}.results-heading .section-kicker{font-size:8px;letter-spacing:1px}.results-toolbar{flex-direction:row;align-items:center;font-size:11px;margin:17px 0}.favourites-filter{gap:4px}.favourites-filter>span{display:none}.recipe-grid{grid-template-columns:1fr;gap:20px}.card-art{height:175px}.card-art img{height:185px;width:290px}.card-body{padding:20px}.recipe-card h3{font-size:29px}.recipe-description{font-size:13px}.recipe-meta{font-size:11px}.recipe-tag{font-size:9px}.match-label{font-size:11px}.ingredients-preview{font-size:12px}.card-actions .button{min-height:44px;font-size:12px}.card-actions .add-shopping{font-size:11px;min-height:44px}.shopping-section{padding:24px 20px;margin-top:24px}.shopping-heading{flex-direction:column;gap:18px}.shopping-heading h2{font-size:29px}.shopping-heading .muted{font-size:12px}.shopping-heading>.button{min-height:40px}.shopping-list{grid-template-columns:1fr}.shopping-empty{gap:13px}.shopping-empty h3{font-size:22px}.shopping-empty>span{font-size:36px}.site-footer{padding-top:20px}.site-footer>div{width:100%;flex-wrap:wrap;gap:20px}.site-footer a,.site-footer .text-button{min-height:36px;display:inline-flex;align-items:center}.footer-note{line-height:1.8}dialog{padding:22px;max-height:calc(100dvh - 32px)}#dialog-title{font-size:34px}.dialog-columns{grid-template-columns:1fr;gap:24px}.dialog-steps li{font-size:14px}.dialog-ingredients li{font-size:14px}.dialog-bottom .button{flex:1 1 100%}}
+.site-header{min-height:88px}
+nav a{min-height:44px;display:inline-flex;align-items:center;gap:4px}
+.hero{min-height:0;padding:24px 0;grid-template-columns:1.6fr 1fr}
+.hero h1{font-size:clamp(36px,4vw,54px);letter-spacing:-1.7px}
+.hero-description{max-width:470px;margin:12px 0 16px;font-size:15px}
+.hero .eyebrow{margin-bottom:10px}
+.hero-art{max-width:280px}
+.art-caption{font-size:13px}
+.art-stamp{width:62px;height:62px}
+.art-stamp b{font-size:12px}
+.hero-link{display:inline-flex;align-items:center;min-height:44px;font-size:14px}
+.pantry-panel summary{cursor:pointer;list-style:none;padding-right:24px;position:relative;min-height:48px}
+.pantry-panel summary::-webkit-details-marker{display:none}
+.pantry-panel summary::after{content:'+';position:absolute;right:0;top:3px;font-size:26px;color:var(--green)}
+.pantry-panel details[open] summary::after{content:'−'}
+.pantry-panel summary h2{font-size:27px}
+#pantry-summary{display:block;font-size:12px;line-height:1.6;color:#53614e;margin-top:8px}
+.pantry-panel details>.muted{font-size:13px;margin:16px 0}
+.pantry-panel details>label{display:block;font-size:13px;font-weight:650;margin:15px 0 7px}
+.pantry-panel details>select,.pantry-panel details>input,.search-field input{font-size:16px}
+.action-status:not(:empty){border-left:3px solid var(--green);background:#e8efdf;border-radius:4px;padding:12px 16px;margin-bottom:20px;font-size:14px;color:#294c35}
+.recipe-pagination{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:16px;margin-top:24px;font-size:13px}
+.recipe-meta,.match-label,.ingredients-preview,.recipe-description{font-size:13px}
+.recipe-tag,.section-kicker{font-size:11px}
+.ingredient-chip,.text-button,.favourite-button,.card-actions .button,.add-shopping,.shopping-recipe button,.favourites-filter{min-height:44px}
+.favourite-button,.shopping-recipe button{min-width:44px}
+.favourite-button{height:44px}
+.ingredient-chip{font-size:12px}
+.results-toolbar{font-size:13px}
+.recipe-description{line-height:1.7}
+@media(max-width:580px){
+  .site-header{flex-wrap:wrap;gap:0;padding:12px 0 4px;min-height:100px}
+  nav{width:100%;justify-content:space-between;gap:12px}
+  nav .nav-active{display:inline-flex}
+  nav a{font-size:13px}
+  .desktop-label{display:inline}
+  .hero{padding:20px 0;display:block}
+  .hero h1{font-size:36px}
+  .hero .eyebrow{font-size:10px}
+  .hero-description{font-size:14px;margin:10px 0}
+  .hero-art{display:none}
+  .kitchen-layout{gap:24px;padding-top:20px}
+  .pantry-panel{padding:18px 20px}
+  .pantry-panel summary h2{font-size:25px}
+  .pantry-panel summary{min-height:56px}
+  .results-heading h2{font-size:28px}
+  .results-heading .section-kicker{font-size:10px}
+  .results-heading .button{font-size:12px}
+  .results-toolbar{font-size:12px}
+  .card-art{height:115px}
+  .card-art img{height:140px;width:220px}
+  .recipe-card h3{font-size:27px}
+  .recipe-description,.ingredients-preview{font-size:14px}
+  .recipe-tag{font-size:11px}
+  .card-actions .add-shopping{font-size:12px}
+  .site-footer a,.site-footer .text-button{min-height:44px}
+}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}}

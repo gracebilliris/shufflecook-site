@@ -21,7 +21,13 @@ try {
   await expect(page.locator('a[href="privacy/"]').first()).toBeVisible();
   await expect(page.locator('a[href="support/"]').first()).toBeVisible();
   await page.getByRole('link', { name: 'Try Recipe Roulette' }).click();
+  await expect(page.locator('[data-recipe-id]')).toHaveCount(4);
+  await page.locator('#recipe-more').click();
+  await expect(page.locator('[data-recipe-id]')).toHaveCount(8);
+  await expect(page.locator('[data-recipe-id]').nth(4)).toBeFocused();
+  await page.locator('#recipe-more').click();
   await expect(page.locator('[data-recipe-id]')).toHaveCount(12);
+  await expect(page.locator('#recipe-more')).toBeHidden();
 
   await page.locator('#ingredient-search').fill('chick');
   await page.locator('[data-ingredient="chickpeas"]').click();
@@ -68,7 +74,7 @@ try {
   await expect(page.locator('#recipe-empty')).toBeVisible();
   await expect(page.locator('#shuffle')).toBeDisabled();
   await page.locator('[data-action="reset-filters"]').click();
-  await expect(page.locator('[data-recipe-id]')).toHaveCount(12);
+  await expect(page.locator('[data-recipe-id]')).toHaveCount(4);
   await page.locator('[data-remove-recipe]').click();
   await expect(page.locator('[data-shopping-ingredient]')).toHaveCount(0);
   await expect(page.locator('#shopping-empty')).toBeVisible();
@@ -83,15 +89,29 @@ try {
   await page.locator('[data-shopping-ingredient]').first().check();
   page.once('dialog', dialog => dialog.accept());
   await page.locator('#reset-state').click();
-  await expect(page.locator('[data-recipe-id]')).toHaveCount(12);
+  await expect(page.locator('[data-recipe-id]')).toHaveCount(4);
   await expect(page.locator('[data-shopping-ingredient]')).toHaveCount(0);
   const saved = await page.evaluate(() => JSON.parse(localStorage.getItem('shufflecook:roulette:v1')));
   assert.deepEqual(saved, { pantry: [], favourites: [], shoppingRecipes: [], checked: [] });
   await page.reload();
-  await expect(page.locator('[data-recipe-id]')).toHaveCount(12);
+  await expect(page.locator('[data-recipe-id]')).toHaveCount(4);
   await page.screenshot({ path: resolve(artifacts, 'recipe-roulette-desktop.png'), fullPage: true });
 
   await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('about:blank');
+  await page.goto(new URL('app/', baseURL).href);
+  await expect(page.locator('#pantry-controls')).not.toHaveAttribute('open', '');
+  await expect(page.locator('#ingredient-search')).toBeHidden();
+  await expect(page.locator('#shuffle')).toBeInViewport();
+  await page.locator('#pantry-controls summary').click();
+  await expect(page.locator('#ingredient-search')).toBeVisible();
+  await page.locator('#ingredient-search').fill('chick');
+  await page.locator('[data-ingredient="chickpeas"]').click();
+  await expect(page.locator('#pantry-summary')).toContainText('1 ingredient selected');
+  await page.locator('#find-matches').click();
+  await expect(page.locator('#recipes-title')).toBeFocused();
+  await expect(page.locator('[data-recipe-id]')).toHaveCount(2);
+  await page.locator('#pantry-controls summary').click();
   assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth), 'mobile page must not overflow');
   await page.locator('[data-action="view"]').first().click();
   await expect(page.locator('#recipe-dialog')).toBeVisible();
@@ -111,12 +131,21 @@ try {
   blockedPage.on('pageerror', error => errors.push(error.message));
   await blockedPage.goto(new URL('app/', baseURL).href);
   await expect(blockedPage.locator('#storage-warning')).toBeVisible();
-  await expect(blockedPage.locator('[data-recipe-id]')).toHaveCount(12);
+  await expect(blockedPage.locator('[data-recipe-id]')).toHaveCount(4);
   await blockedPage.locator('[data-action="favourite"]').first().click();
   await expect(blockedPage.locator('[data-action="favourite"]').first()).toHaveAttribute('aria-pressed', 'true');
   await blockedContext.close();
   assert.deepEqual(errors, [], 'no browser exceptions or failing HTTP assets');
   console.log(`PASS browser regression: ${baseURL} — pantry, filters, shuffle, recipe, favourites/reload, shopping/reload, reset, empty states, storage failure, mobile, privacy/support`);
+} catch (error) {
+  console.error(await page.evaluate(() => ({
+    url: location.href,
+    scroll: scrollY,
+    shuffleTop: document.getElementById('shuffle')?.getBoundingClientRect().top,
+    pantryOpen: document.getElementById('pantry-controls')?.open,
+  })));
+  await page.screenshot({ path: resolve(artifacts, 'browser-failure.png') });
+  throw error;
 } finally {
   await browser.close();
 }
