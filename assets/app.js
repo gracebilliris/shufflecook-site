@@ -1,5 +1,6 @@
 import { recipes, pantryIngredients } from './recipes.js';
 import { findMatches, shuffleMatch, buildShoppingList, loadState, saveState } from './engine.js';
+import { recipeArtwork } from './recipe-art.js';
 
 const $ = (id) => document.getElementById(id);
 const escapeHTML = (value) => String(value).replace(/[&<>"']/g, (character) => ({
@@ -98,8 +99,8 @@ function cardTemplate({ recipe, available, missing }) {
   const picked = pickedId === recipe.id;
   return `<article class="recipe-card${picked ? ' is-pick' : ''}" data-recipe-id="${escapeHTML(recipe.id)}" tabindex="-1" aria-label="${escapeHTML(recipe.title)}">
     <div class="card-art">
-      <img src="../assets/food-art.svg" alt="" width="235" height="160" loading="lazy">
-      <span class="illustration-label">A LITTLE SERVING INSPIRATION</span>
+      ${recipeArtwork(recipe.id)}
+      <span class="illustration-label">DISH ILLUSTRATION</span>
       ${picked ? '<span class="pick-label">TONIGHT’S PICK</span>' : ''}
       <button class="favourite-button" type="button" data-action="favourite" data-id="${escapeHTML(recipe.id)}" aria-label="${favourite ? 'Remove' : 'Save'} ${escapeHTML(recipe.title)} ${favourite ? 'from' : 'to'} favourites" aria-pressed="${favourite}"><span aria-hidden="true">${favourite ? '♥' : '♡'}</span></button>
     </div>

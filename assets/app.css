@@ -61,4 +61,6 @@ nav a{min-height:44px;display:inline-flex;align-items:center;gap:4px}
   .card-actions .add-shopping{font-size:12px}
   .site-footer a,.site-footer .text-button{min-height:44px}
 }
+.card-art > .recipe-illustration{width:100%;height:100%;max-width:360px;position:relative}
+.illustration-label{font-size:9px;letter-spacing:.5px}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}}

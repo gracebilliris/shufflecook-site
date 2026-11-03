@@ -28,6 +28,15 @@ try {
   await page.locator('#recipe-more').click();
   await expect(page.locator('[data-recipe-id]')).toHaveCount(12);
   await expect(page.locator('#recipe-more')).toBeHidden();
+  await expect(page.locator('[data-recipe-art]')).toHaveCount(12);
+  const illustrations = await page.locator('[data-recipe-art]').evaluateAll(elements => elements.map(svg => ({
+    id: svg.dataset.recipeArt,
+    description: svg.getAttribute('aria-label'),
+    artwork: svg.innerHTML,
+    bounds: svg.getBBox().width,
+  })));
+  assert.equal(new Set(illustrations.map(art => art.artwork)).size, 12, 'Every recipe needs its own illustration');
+  assert.ok(illustrations.every(art => art.description.startsWith('Illustration of ') && art.bounds > 100), 'Artwork must render with a descriptive accessible name');
 
   await page.locator('#ingredient-search').fill('chick');
   await page.locator('[data-ingredient="chickpeas"]').click();
