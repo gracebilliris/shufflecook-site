@@ -3,33 +3,44 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Official privacy and support information for ShuffleCook.">
-  <title>ShuffleCook</title>
-  <link rel="stylesheet" href="assets/styles.css">
+  <meta name="description" content="Shuffle. Shop. Cook. Try Recipe Roulette by ShuffleCook: find original recipes for your pantry and build a practical shopping list.">
+  <meta name="theme-color" content="#214d38">
+  <title>ShuffleCook — A fresh spin on dinner</title>
+  <link rel="stylesheet" href="assets/app.css">
+  <link rel="stylesheet" href="assets/home.css">
 </head>
 <body>
-  <main class="page">
-    <section class="hero">
-      <p class="eyebrow">Shuffle. Shop. Cook.</p>
-      <h1>ShuffleCook</h1>
-      <p class="lede">
-        An offline iPhone and iPad app for discovering recipes and building
-        one practical shopping list.
-      </p>
-      <nav class="actions" aria-label="ShuffleCook information">
-        <a class="primary" href="privacy/">Privacy Policy</a>
-        <a class="secondary" href="support/">Support</a>
-      </nav>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header page-width">
+    <a class="brand" href="./"><span class="brand-mark" aria-hidden="true">s<span>c</span><i></i></span><span>ShuffleCook<small>SHUFFLE. SHOP. COOK.</small></span></a>
+    <nav aria-label="ShuffleCook information"><a href="privacy/">Privacy Policy</a><a href="support/">Support</a></nav>
+  </header>
+  <main id="main" class="page-width">
+    <section class="hero" aria-labelledby="home-title">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="tiny-star" aria-hidden="true">✳</span> YOUR PANTRY. A LITTLE POSSIBILITY.</p>
+        <h1 id="home-title">Dinner, with a<br><em>fresh little spin.</em></h1>
+        <p class="hero-description">Meet Recipe Roulette by ShuffleCook.<br>Choose what’s in your kitchen. Discover your next good meal.</p>
+        <a class="button button-green" href="app/">Try Recipe Roulette <span aria-hidden="true">↗</span></a>
+        <p class="home-caption">Free in your browser. No sign-up. No recipe roulette regrets.</p>
+      </div>
+      <div class="hero-art">
+        <span class="art-caption caption-top">a little of this…</span>
+        <img src="assets/food-art.svg" alt="An illustrated bowl of colourful vegetables, chickpeas and greens." width="560" height="380">
+        <span class="art-caption caption-bottom">…dinner is looking good.</span>
+        <span class="art-stamp" aria-hidden="true">LESS WASTE<br><b>MORE<br>YUM.</b></span>
+      </div>
     </section>
-
-    <section class="card">
-      <h2>Designed to work offline</h2>
-      <p>
-        ShuffleCook includes its recipes and images in the app. It has no
-        account, advertising, analytics, tracking, or backend service.
-      </p>
+    <section class="home-features" aria-label="How Recipe Roulette works">
+      <article><p class="section-kicker">01 / START WITH WHAT YOU HAVE</p><h2>A pantry, not a puzzle.</h2><p>Select your ingredients and filter 12 original recipes by dietary preference and cooking time. See exactly what you have and what’s missing.</p></article>
+      <article><p class="section-kicker">02 / LET DINNER SURPRISE YOU</p><h2>A delicious little detour.</h2><p>Shuffle your matching recipes, open the full instructions, and save your favourites for another day.</p></article>
+      <article><p class="section-kicker">03 / A SMALLER MENTAL LOAD</p><h2>One practical list.</h2><p>Gather missing ingredients across recipes and tick them off as you shop. Your kitchen stays saved in this browser.</p></article>
+    </section>
+    <section class="shopping-section home-native">
+      <div><p class="section-kicker">THE ORIGINAL SHUFFLECOOK</p><h2>Designed to work offline</h2><p>An offline iPhone and iPad app for discovering recipes and building one practical shopping list.</p><p>ShuffleCook includes its recipes and images in the app. It has no account, advertising, analytics, tracking, or backend service.</p></div>
+      <div><h3>Same spirit. A new way to cook.</h3><p>Recipe Roulette is a separate, browser-based companion. Its 12-recipe library needs no recipe API. Pantry, favourites and shopping data stay in this browser’s local storage; there is no account or cloud sync.</p><a class="hero-link" href="app/">Step into the kitchen <span aria-hidden="true">↗</span></a></div>
     </section>
   </main>
-  <footer>Copyright &copy; 2026 Grace Billiris</footer>
+  <footer class="site-footer page-width"><p>Copyright &copy; 2026 Grace Billiris</p><div><a href="privacy/">Privacy Policy</a><a href="support/">Support</a><a href="app/">Recipe Roulette</a></div></footer>
 </body>
 </html>
